@@ -33,7 +33,7 @@ with tab1:
     st.subheader("Computer Configuration")
     st.markdown("Configure your computer specifications and get a predicted price range.")
     
-    # Initialize session state for widgets if not exists
+    # Initialize session state
     default_values = {
         "screen_size_inch": 15.6, "ram_gb": 16, "ssd_gb": 512, "cpu_cores": 8,
         "cpu_base_ghz": 2.5, "cpu_turbo_ghz": 4.5, "vram_gb": 4.0, "battery_wh": 50.0
@@ -48,7 +48,6 @@ with tab1:
     
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
     
-    # Helper to update state
     def update_profile(profile_dict):
         for k, v in profile_dict.items():
             st.session_state[k] = v
@@ -74,7 +73,6 @@ with tab1:
         
         with col1:
             st.markdown("#### ⚙️ Processor & Memory")
-            # Use key=... to bind directly to session state
             user_input['cpu_cores'] = st.number_input("CPU Cores", 2, 64, key="cpu_cores")
             user_input['cpu_base_ghz'] = st.number_input("CPU Base GHz", 0.0, 6.0, key="cpu_base_ghz")
             user_input['cpu_turbo_ghz'] = st.number_input("CPU Turbo GHz", 0.0, 7.0, key="cpu_turbo_ghz")
@@ -156,7 +154,6 @@ with tab3:
         clustered_df = app_utils.perform_clustering(df, cluster_features, n_clusters)
         
         # Visualization
-        # Filter only clustered rows and create a CLEAN subset for plotting
         plot_df = clustered_df.dropna(subset=['Cluster'])[['price_euros', 'ram_gb', 'Cluster']].copy()
         
         # Explicitly enforce types on the subset
@@ -168,7 +165,6 @@ with tab3:
         st.markdown(f"### Market Segments (K={n_clusters})")
         st.markdown("Visualizing the identified market segments based on Price and RAM.")
         
-        # Use native Streamlit chart which is proven to work in this environment
         st.scatter_chart(
             plot_df,
             x='price_euros',
@@ -178,7 +174,7 @@ with tab3:
             use_container_width=True
         )
         
-        # Profiles - Fix ValueError by formatting only numeric columns
+        # Profiles
         st.subheader("Cluster Profiles")
         avg_stats = clustered_df.groupby("Cluster")[cluster_features].mean().reset_index()
         st.dataframe(avg_stats.style.format({

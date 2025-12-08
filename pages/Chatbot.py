@@ -43,7 +43,6 @@ for message in st.session_state.messages:
 
 # User Input
 if prompt := st.chat_input("Your message"):
-    # Add user message to history
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -55,30 +54,13 @@ if prompt := st.chat_input("Your message"):
         try:
             genai.configure(api_key=api_key)
             
-            # Define the tool
-            tools = [app_utils.get_price_prediction_for_agent]
-            
-            # Initialize Model with Tools
-            model = genai.GenerativeModel('gemini-2.5-flash', tools=tools)
-            
-            # Start Chat Session (Automatic function calling handling is supported in chat sessions)
-            chat = model.start_chat(enable_automatic_function_calling=True)
-            
-            # Replay history to set context (excluding the last user prompt which we send next)
-            # Note: For simple history replay with tools, we might need to be careful.
-            # Ideally, we just send the prompt with history, but `start_chat` manages history.
-            # Let's try to just send the prompt for now to keep it simple and robust, 
-            # or reconstruct history if needed. 
-            # For a robust agent, we often send the full history.
-            
-            # Simplified approach: Just send the current prompt. 
-            # We will construct the history for the chat session
+            # Prepare history for Gemini
             history_for_gemini = []
             for m in st.session_state.messages[:-1]:
                 role = "user" if m["role"] == "user" else "model"
                 history_for_gemini.append({"role": role, "parts": [m["content"]]})
                 
-            # Define the tools
+            # Define tools
             tools = [
                 app_utils.get_price_prediction_for_agent,
                 app_utils.recommend_laptops_for_agent,
@@ -86,21 +68,17 @@ if prompt := st.chat_input("Your message"):
                 app_utils.get_brand_count
             ]
             
-            # Initialize Model with Tools
-            # We add a system instruction to encourage tool usage with defaults
+            # Initialize Model
             system_instruction = "You are a helpful laptop expert agent. If the user asks for a recommendation or price but misses some details (like RAM or SSD), assume reasonable defaults (e.g., 8GB RAM, 256GB SSD) and proceed with the tool call. Do not ask for clarification unless absolutely necessary. Always explain your assumptions."
             model = genai.GenerativeModel('gemini-2.5-flash', tools=tools, system_instruction=system_instruction)
             
-            # Start Chat Session (Manual function calling for UI control)
-            # We disable automatic function calling to intercept the tool call
+            # Start Chat Session (Manual function calling)
             chat = model.start_chat(history=history_for_gemini, enable_automatic_function_calling=False)
             
             with st.chat_message("assistant"):
-                # Create a status container to show "thinking" process
                 with st.status("Processing...", expanded=True) as status:
                     response = chat.send_message(prompt)
                     
-                    # Helper function to find function calls in any part of the response
                     def get_function_call_from_response(resp):
                         if not resp.candidates:
                             return None
@@ -109,7 +87,7 @@ if prompt := st.chat_input("Your message"):
                                 return part.function_call
                         return None
 
-                    # Loop to handle multiple function calls
+                    # Handle tool calls
                     while True:
                         fc = get_function_call_from_response(response)
                         if not fc:
@@ -122,7 +100,7 @@ if prompt := st.chat_input("Your message"):
                         status.write(f"**Tool Call:** `{fn_name}`")
                         status.write(f"**Parameters:** `{fn_args}`")
                         
-                        # Execute the tool
+                        # Execute tool
                         api_response = "Error: Unknown tool"
                         if fn_name == 'get_price_prediction_for_agent':
                             status.update(label=f"Predicting price...", state="running")
@@ -142,7 +120,7 @@ if prompt := st.chat_input("Your message"):
                             
                         status.write(f"**Backend Output:** {api_response}")
                         
-                        # Send tool output back to model
+                        # Send output back to model
                         response = chat.send_message(
                             genai.protos.Content(
                                 parts=[genai.protos.Part(
@@ -156,12 +134,11 @@ if prompt := st.chat_input("Your message"):
                             
                     status.update(label="Analysis Complete", state="complete", expanded=False)
                 
-                # Safely display final natural language response
+                # Display response safely
                 final_text = ""
                 try:
                     final_text = response.text
                 except Exception:
-                    # If response.text fails, manually extract text parts
                     for part in response.candidates[0].content.parts:
                         if part.text:
                             final_text += part.text + "\n"

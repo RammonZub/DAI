@@ -19,7 +19,7 @@ except Exception as e:
     st.error(f"Error loading resources: {e}")
     st.stop()
 
-# 1. Global Feature Importance (from Model)
+# 1. Global Feature Importance
 st.subheader("Global Feature Importance")
 st.markdown("This chart shows the overall importance of each feature in the Gradient Boosting model.")
 
@@ -27,7 +27,6 @@ if hasattr(model, 'feature_importances_'):
     importances = model.feature_importances_
     features = feature_info['selected_features']
     
-    # Create DataFrame
     fi_df = pd.DataFrame({'Feature': features, 'Importance': importances})
     fi_df = fi_df.sort_values(by='Importance', ascending=True)
     

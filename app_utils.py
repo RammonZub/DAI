@@ -8,7 +8,6 @@ from sklearn.cluster import KMeans
 from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import StandardScaler
 import shap
-
 import logging
 import sys
 
@@ -182,14 +181,12 @@ def get_price_prediction_for_agent(ram_gb, ssd_gb, cpu_score=5000, gpu_score=500
         model, feature_info, input_options = load_model_resources()
         
         # Construct input dictionary with defaults for missing fields
-        # We use 'median' values from feature_info for things not specified
         input_data = {
             'ram_gb': ram_gb,
             'ssd_gb': ssd_gb,
             'cpu_mark': cpu_score,
             'gpu_mark': gpu_score,
             'screen_size_inch': screen_size,
-            # Defaults for other required fields to avoid errors
             'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0,
             'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0,
             'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250
@@ -229,7 +226,6 @@ def recommend_laptops_for_agent(ram_gb=8, ssd_gb=256, price_euros=1000, k=3):
         df = load_data()
         
         # Create a dummy input for similarity search
-        # We only care about the features used for similarity: ram, ssd, price, screen (default 15.6)
         search_input = pd.DataFrame([{
             'ram_gb': ram_gb, 
             'ssd_gb': ssd_gb, 

@@ -82,7 +82,7 @@ def main():
     # 3. Enrich with Benchmarks
     df['cpu_norm'] = df['Procesador_Procesador'].apply(normalize_name)
     cpu_db['cpu_norm'] = cpu_db['CPU Name'].apply(normalize_name)
-    # Merge CPU (keep first match)
+    # Merge CPU
     cpu_db = cpu_db.drop_duplicates(subset=['cpu_norm'])
     df = df.merge(cpu_db[['cpu_norm', 'CPU Mark (higher is better)', 'Rank (lower is better)', 'CPU Value (higher is better)']], on='cpu_norm', how='left')
     df.rename(columns={'CPU Mark (higher is better)': 'cpu_mark', 'Rank (lower is better)': 'cpu_rank', 'CPU Value (higher is better)': 'cpu_value'}, inplace=True)
@@ -94,8 +94,7 @@ def main():
     df = df.merge(gpu_db[['gpu_norm', 'Passmark G3D Mark (higher is better)', 'Rank (lower is better)', 'Videocard Value (higher is better)']], on='gpu_norm', how='left')
     df.rename(columns={'Passmark G3D Mark (higher is better)': 'gpu_mark', 'Rank (lower is better)': 'gpu_rank', 'Videocard Value (higher is better)': 'gpu_value'}, inplace=True)
 
-    # 4. Handle Missing Values (Simplified)
-    # Fill numeric NaNs with median
+    # 4. Handle Missing Values
     numeric_cols = ['screen_size_inch', 'ram_gb', 'ssd_gb', 'vram_gb', 'weight_kg', 
                     'cpu_base_ghz', 'cpu_turbo_ghz', 'cpu_cores', 
                     'cpu_mark', 'gpu_mark']
@@ -103,24 +102,20 @@ def main():
     for col in numeric_cols:
         df[col] = df[col].fillna(df[col].median())
         
-    # Drop rows with missing target
     df = df.dropna(subset=['price_euros'])
     
     # 5. Feature Engineering
     df['total_storage'] = df['ssd_gb'] + df['hdd_gb']
-    # Create proccessor_name and graphics_name for UI if missing
     if 'proccessor_name' not in df.columns:
         df['proccessor_name'] = df['Procesador_Procesador']
     if 'graphics_name' not in df.columns:
         df['graphics_name'] = df['Gráfica_Tarjeta gráfica']
 
     print(f"Saving cleaned data to {CLEAN_DATA_PATH}...")
-    # Save cleaned data for App
     df.to_csv(CLEAN_DATA_PATH, index=False)
     
     # --- MODEL TRAINING ---
     print("Training model...")
-    # Select features
     features = ['screen_size_inch', 'ram_gb', 'ssd_gb', 'vram_gb', 'weight_kg', 
                 'cpu_base_ghz', 'cpu_turbo_ghz', 'cpu_cores', 'battery_wh',
                 'cpu_mark', 'gpu_mark']
@@ -129,20 +124,16 @@ def main():
     X = df[features]
     y = df[target]
     
-    # Train/Test Split
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    # Model
     model = GradientBoostingRegressor(n_estimators=100, max_depth=5, learning_rate=0.1, random_state=42)
     model.fit(X_train, y_train)
     
     print(f"Model R2: {model.score(X_test, y_test):.4f}")
     
-    # Save Model
     print(f"Saving model to {MODEL_PATH}...")
     joblib.dump(model, MODEL_PATH)
     
-    # Save Metadata
     feature_info = {
         "selected_features": features,
         "feature_stats": {
@@ -151,11 +142,10 @@ def main():
                 "mean": float(df[col].mean())
             } for col in features
         },
-        "encoding_mappings": {}, # Simplified for this script
+        "encoding_mappings": {},
         "low_card_dummies": {}
     }
     
-    # Input Options (for UI dropdowns)
     input_options = {
         "high_cardinality": {},
         "low_cardinality": {},
