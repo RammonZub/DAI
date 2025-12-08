@@ -10,9 +10,10 @@ st.markdown("A smart assistant that can predict computer prices using tools.")
 
 with st.expander("Suggested Complex Questions", expanded=False):
     st.markdown("""
-    *   **Comparison**: "What is the price difference between a laptop with 16GB RAM and one with 32GB RAM?"
-    *   **Budget Check**: "I have €1000. Can I afford a laptop with 16GB RAM and 512GB SSD?"
-    *   **High-End vs Basic**: "How much more expensive is a high-end gaming laptop compared to a basic office one?"
+    *   **Smart Recommendation**: "Recommend 3 laptops with 16GB RAM and 512GB SSD for under €1200."
+    *   **Market Analysis**: "What is the average price of a Dell laptop compared to an HP laptop?"
+    *   **Inventory & Price**: "How many Apple laptops do we have, and what is the average price of an Apple laptop?"
+    *   **Value Check**: "I have €800. Recommend a laptop with 512GB SSD and tell me if it's cheaper than the average market price."
     """)
 
 with st.expander("Available Tools & Capabilities", expanded=False):
