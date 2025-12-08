@@ -1,0 +1,195 @@
+2025-12-08 21:40:33,564 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:40:33,732 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:40:33,762 - INFO - Loading model resources...
+2025-12-08 21:40:33,768 - INFO - Model resources loaded successfully
+2025-12-08 21:40:37,655 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:40:37,660 - INFO - Prediction successful: €1038.55
+2025-12-08 21:40:44,015 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:40:44,020 - INFO - Prediction successful: €1038.55
+2025-12-08 21:40:46,214 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:40:46,217 - INFO - Prediction successful: €1038.55
+2025-12-08 21:40:48,646 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:40:48,651 - INFO - Prediction successful: €1038.55
+2025-12-08 21:43:54,863 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:43:54,998 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:43:55,105 - INFO - Loading model resources...
+2025-12-08 21:43:55,118 - INFO - Model resources loaded successfully
+2025-12-08 21:44:00,677 - INFO - Preprocessing input: {'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 8, 'ssd_gb': 256, 'vram_gb': 0.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:44:00,685 - INFO - Prediction successful: €1345.15
+2025-12-08 21:44:04,838 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:44:04,843 - INFO - Prediction successful: €1038.55
+2025-12-08 21:44:08,077 - INFO - Preprocessing input: {'cpu_cores': 16, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 32, 'ssd_gb': 1000, 'vram_gb': 12.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:44:08,081 - INFO - Prediction successful: €1244.15
+2025-12-08 21:44:11,593 - INFO - Preprocessing input: {'cpu_cores': 12, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 64, 'ssd_gb': 2000, 'vram_gb': 8.0, 'screen_size_inch': 14.0, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 21:44:11,596 - INFO - Prediction successful: €859.22
+2025-12-08 21:44:19,065 - INFO - Finding 5 similar products based on ['ram_gb', 'ssd_gb', 'screen_size_inch', 'price_euros']
+2025-12-08 21:44:19,069 - INFO - Found 5 similar products
+2025-12-08 21:44:25,348 - INFO - Finding 5 similar products based on ['ram_gb', 'ssd_gb', 'screen_size_inch', 'price_euros']
+2025-12-08 21:44:25,352 - INFO - Found 5 similar products
+2025-12-08 21:44:29,011 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:44:29,261 - INFO - Clustering completed
+2025-12-08 21:47:33,740 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:47:33,896 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:47:33,929 - INFO - Loading model resources...
+2025-12-08 21:47:33,936 - INFO - Model resources loaded successfully
+2025-12-08 21:47:37,582 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:47:37,881 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 21:47:37,881 - INFO - Clustering completed
+2025-12-08 21:47:43,140 - INFO - Running clustering with K=3 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:47:43,506 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      2.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      2.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      0.0
+2025-12-08 21:47:43,506 - INFO - Clustering completed
+2025-12-08 21:47:46,727 - INFO - Running clustering with K=6 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:47:47,863 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      3.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      3.0
+3       647.00    16.0   512.0              15.6      5.0
+4      1031.31    16.0     1.0              16.0      0.0
+2025-12-08 21:47:47,863 - INFO - Clustering completed
+2025-12-08 21:50:06,250 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:50:06,390 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:50:06,419 - INFO - Loading model resources...
+2025-12-08 21:50:06,425 - INFO - Model resources loaded successfully
+2025-12-08 21:50:29,276 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:50:29,630 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 21:50:29,630 - INFO - Clustering completed
+2025-12-08 21:52:15,588 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:52:15,738 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:52:15,770 - INFO - Loading model resources...
+2025-12-08 21:52:15,778 - INFO - Model resources loaded successfully
+2025-12-08 21:52:18,109 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:52:18,352 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 21:52:18,355 - INFO - Clustering completed
+2025-12-08 21:54:11,830 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:54:11,983 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:54:12,080 - INFO - Loading model resources...
+2025-12-08 21:54:12,094 - INFO - Model resources loaded successfully
+2025-12-08 21:54:12,882 - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-168' coro=<WebSocketProtocol13.write_message.<locals>.wrapper() done, defined at /Users/ramonzubiagasuarez/Library/Python/3.10/lib/python/site-packages/tornado/websocket.py:1086> exception=WebSocketClosedError()>
+Traceback (most recent call last):
+  File "/Users/ramonzubiagasuarez/Library/Python/3.10/lib/python/site-packages/tornado/websocket.py", line 1088, in wrapper
+    await fut
+tornado.iostream.StreamClosedError: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ramonzubiagasuarez/Library/Python/3.10/lib/python/site-packages/tornado/websocket.py", line 1090, in wrapper
+    raise WebSocketClosedError()
+tornado.websocket.WebSocketClosedError
+2025-12-08 21:54:15,477 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:54:16,063 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 21:54:16,063 - INFO - Clustering completed
+2025-12-08 21:57:44,338 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 21:57:44,461 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 21:57:44,488 - INFO - Loading model resources...
+2025-12-08 21:57:44,494 - INFO - Model resources loaded successfully
+2025-12-08 21:57:46,679 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:57:47,071 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 21:57:47,071 - INFO - Clustering completed
+2025-12-08 21:58:28,856 - INFO - Running clustering with K=5 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 21:58:30,055 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      3.0
+1      1270.42    16.0   256.0              15.3      2.0
+2      1731.44    16.0   256.0              14.2      3.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      2.0
+2025-12-08 21:58:30,055 - INFO - Clustering completed
+2025-12-08 22:02:04,939 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:02:05,064 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:02:05,097 - INFO - Loading model resources...
+2025-12-08 22:02:05,104 - INFO - Model resources loaded successfully
+2025-12-08 22:05:06,805 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:05:06,939 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:05:06,969 - INFO - Loading model resources...
+2025-12-08 22:05:06,977 - INFO - Model resources loaded successfully
+2025-12-08 22:05:14,124 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 22:05:14,393 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 22:05:14,393 - INFO - Clustering completed
+2025-12-08 22:08:30,373 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:08:30,518 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:08:30,548 - INFO - Loading model resources...
+2025-12-08 22:08:30,554 - INFO - Model resources loaded successfully
+2025-12-08 22:08:33,025 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 22:08:33,689 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ssd_gb  screen_size_inch  Cluster
+0      1026.53    16.0   256.0              13.6      1.0
+1      1270.42    16.0   256.0              15.3      0.0
+2      1731.44    16.0   256.0              14.2      1.0
+3       647.00    16.0   512.0              15.6      0.0
+4      1031.31    16.0     1.0              16.0      3.0
+2025-12-08 22:08:33,689 - INFO - Clustering completed
+2025-12-08 22:08:48,438 - INFO - Finding 5 similar products based on ['ram_gb', 'ssd_gb', 'screen_size_inch', 'price_euros']
+2025-12-08 22:08:48,444 - INFO - Found 5 similar products
+2025-12-08 22:08:55,063 - INFO - Preprocessing input: {'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 8, 'ssd_gb': 256, 'vram_gb': 0.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 22:08:55,067 - INFO - Prediction successful: €1345.15
+2025-12-08 22:08:59,830 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-08 22:08:59,834 - INFO - Prediction successful: €1038.55
+2025-12-08 22:12:16,018 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:12:16,179 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:12:16,238 - INFO - Loading model resources...
+2025-12-08 22:12:16,247 - INFO - Model resources loaded successfully
+2025-12-08 22:12:22,516 - INFO - Preprocessing batch of 200 rows
+2025-12-08 22:14:01,063 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:14:01,214 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:14:01,247 - INFO - Loading model resources...
+2025-12-08 22:14:01,253 - INFO - Model resources loaded successfully
+2025-12-08 22:14:04,675 - INFO - Running clustering with K=4 on features ['price_euros', 'ram_gb', 'ssd_gb', 'screen_size_inch']
+2025-12-08 22:14:05,013 - INFO - Clustered Data Sample:
+   price_euros  ram_gb  ...  screen_size_inch  Cluster
+0      1026.53    16.0  ...              13.6      1.0
+1      1270.42    16.0  ...              15.3      0.0
+2      1731.44    16.0  ...              14.2      1.0
+3       647.00    16.0  ...              15.6      0.0
+4      1031.31    16.0  ...              16.0      3.0
+
+[5 rows x 5 columns]
+2025-12-08 22:14:05,013 - INFO - Clustering completed
+2025-12-08 22:14:08,031 - INFO - Starting SHAP summary generation...
+2025-12-08 22:14:08,036 - INFO - Preprocessing batch of 200 rows
+2025-12-08 22:14:08,076 - INFO - SHAP values calculated successfully. Generating plot...
+2025-12-08 22:14:08,556 - INFO - SHAP summary plot generated and displayed.

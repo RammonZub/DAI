@@ -1,0 +1,153 @@
+Título  >  Title
+Precio  >  Price
+  --> Rango  >  Range 
+Ofertas  >  Offers
+Tipo de producto  >  Product type
+Serie  >  Serie
+Pantalla  >  Screen
+  --> Tamaño de la pantalla  >  Screen size
+  --> Diagonal de la pantalla  >  Diagonal screen
+  --> Tecnología de la pantalla  >  Screen technology
+  --> Luminosidad  >  Brightness
+  --> Resolución de pantalla  >  Screen resolution
+  --> Densidad de píxeles  >  Pixel density
+  --> Tasa de actualización de imagen  >  Image update rate
+  --> Formato de imagen  >  Image format
+  --> Tiempo de reacción  >  Reaction time
+  --> Pantalla  >  Screen
+  --> Displayglas  >  Displayglas
+  --> Propiedades de la pantalla  >  
+Procesador  >  Processor
+  --> Procesador  >  Processor
+  --> Fabricante del procesador  >  
+  --> Tipo de procesador  >  Type of processor
+  --> Nombre en clave del procesador  >  Processor's code name
+  --> Nivel de caché  >  Cache level
+  --> Caché  >  Cache
+  --> Número de núcleos del procesador  >  Number of cores
+  --> Frecuencia de reloj  >  Clock frequency
+  --> Frecuencia turbo máx.  >  Max. turbo frequency
+  --> Potencia máx. de diseño térmico (TDP)  >  Max.Thermal design (TDP)
+  --> Chipset  >  Chipset
+  --> Frecuencia del reloj  >  Clock frequency
+  --> Zócalo de CPU  >  CPU Zócalo
+  --> Número de hilos de ejecución  >  Number of execution threads
+  --> TDP  >  TDP
+  --> Chipset de la placa base  >  Base plate chipset
+  --> Placa base  >  Base plate
+  --> Procesadores compatibles  >  Compatible processors
+Disco duro  >  Hard drive
+  --> Tipo de disco duro  >  Type of hard disk
+  --> Número de discos duros (instalados)  >  Number of hard drives (installed)
+  --> Capacidad de memoria SSD  >  SSD memory capacity
+  --> Capacidad del disco duro  >  Hard drive
+  --> Velocidad de rotación del disco duro  >  Hard disk rotation speed
+  --> Capacidad disco duro (TB)  >  Hard drive (TB)
+  --> Capacidad disco duro (GB)  >  Hard drive (GB)
+Gráfica  >  Graphic
+  --> Salida de vídeo  >  Video output
+  --> Resolución externa  >  External resolution
+  --> Fabricante de la tarjeta gráfica  >  Graphics card manufacturer
+  --> Memoria gráfica  >  Graphic memory
+  --> Tipo de memoria gráfica  >  Graphic memory type
+  --> Tarjeta gráfica  >  Graphic card
+  --> GPU  >  GPU
+  --> Característica de la tarjeta gráfica  >  Characteristic of the graphics card
+  --> Número de ranuras para PCIe  >  
+Conectividad  >  Connectivity
+  --> Lector de tarjetas  >  Card reader
+  --> Tipo de tarjetas compatibles  >  
+  --> Conexión  >  Connection
+  --> Conexión frontal  >  
+Comunicaciones  >  Communications
+  --> Conectividad  >  Connectivity
+  --> Versión Bluetooth  >  Bluetooth version
+  --> Estándar wifi  >  Wi -Fi standard
+  --> Transmisión de datos  >  Data transmission
+  --> Estándar LAN  >  LAN standard
+  --> Características del Bluetooth  >  Bluetooth characteristics
+Cámara  >  Camera
+  --> Webcam  >  Webcam
+  --> Función de la cámara  >  Chamber function
+  --> Resolución de la cámara  >  
+Teclado  >  
+  --> Tipo de teclado  >  Keyboard type
+  --> Número de teclas  >  Number of keys
+  --> Teclas adicionales  >  Additional keys
+  --> Característica del teclado  >  Keyboard characteristic
+Sonido  >  Sound
+  --> Número de altavoces  >  Number of speakers
+  --> Sistema de altavoces  >  Speakers system
+  --> Potencia de altavoces  >  Speaker power
+  --> Modo de sonido HDMI  >  
+  --> Chip de sonido  >  Sound chip
+Alimentación  >  Feeding
+  --> Batería  >  
+  --> Autonomía de la batería  >  Battery autonomy
+  --> Vatios-hora  >  Watts-room
+  --> Alimentación  >  
+  --> Batería intercambiable  >  Interchangeable battery
+  --> Número de celdas  >  Number of cells
+  --> Voltaje de salida  >  
+  --> Intensidad de corriente  >  Current intensity
+  --> Capacidad de la batería  >  Battery capacity
+Medidas y peso  >  Measures and weight
+  --> Material de la carcasa  >  Housing material
+  --> Diseño  >  Design
+  --> Profundidad  >  Depth
+  --> Altura  >  
+  --> Ancho  >  Ancho
+  --> Peso  >  Peso
+  --> Color  >  Color
+  --> Alto  >  Alto
+Otras características  >  Other features
+  --> Equipamiento  >  Equipment
+  --> Seguridad integrada  >  Integrated security
+  --> Sensor  >  Sensor
+  --> Fecha de lanzamiento  >  Release date
+  --> Portátil configurable  >  Configurable portable
+  --> Características especiales  >  Special characteristics
+  --> Certificación  >  
+  --> Software incluido  >  
+  --> Localización  >  
+  --> Expansión de hardware  >  
+  --> Artículo incluido  >  Article included
+  --> Características de la carcasa  >  Housing characteristics
+  --> Certificado  >  Certified
+  --> Modo de sonido  >  Sound mode
+  --> Certificado RoHS  >  
+Sistema operativo  >  
+  --> Sistema operativo  >  
+  --> Arquitectura bit  >  BIT ARCHITECTURE
+  --> Software incluido  >  Software included
+RAM  >  RAM
+  --> Memoria RAM  >  
+  --> Tipo de RAM  >  Ram
+  --> Frecuencia de la memoria  >  Memory Frequency
+  --> Extensión de memoria máxima  >  Maximum memory extension
+  --> Número de ranuras de memoria RAM  >  Number of RAM grooves
+  --> Ranura de memoria RAM instaladas  >  Installed RAM slot
+  --> Configuración de memoria RAM  >  RAM Settings
+  --> Número de ranuras para memoria RAM  >  Number of RAM MEMORY
+Almacenamiento  >  Storage
+  --> Lector óptico  >  Optical reader
+  --> Velocidades de lectura  >  Reading speeds
+  --> Velocidades de escritura  >  Writing speeds
+  --> Formato audiovisual compatible  >  Formato audiovisual compatible
+IA  >  AI
+  --> Característica IA  >  AI Characteristics
+  --> Función IA  >  AI Function
+  --> Procesador IA  >  AI Processor
+Tipo  >  Type
+Propiedades de la carcasa  >  Housing Properties
+  --> Tipo de caja  >  Box type
+  --> Color  >  Color
+  --> Material de la carcasa  >  Housing material
+  --> Alimentación  >  
+  --> Bahía interna de 2,5"  >  Internal Bay of 2.5 "
+  --> Bahía interna de 3,5"  >  
+  --> Bahía externa de 5,25"  >  5.25 outer bay
+  --> Superficie del material  >  Material surface
+  --> Bahía externa de 3,5"  >  3.5 "external bay
+Adecuado para  >  Suggested use
+Características especiales  >  Special characteristics

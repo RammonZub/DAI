@@ -1,0 +1,63 @@
+{
+  "selected_features": [
+    "screen_size_inch",
+    "ram_gb",
+    "ssd_gb",
+    "vram_gb",
+    "weight_kg",
+    "cpu_base_ghz",
+    "cpu_turbo_ghz",
+    "cpu_cores",
+    "battery_wh",
+    "cpu_mark",
+    "gpu_mark"
+  ],
+  "feature_stats": {
+    "screen_size_inch": {
+      "median": 15.6,
+      "mean": 15.403998990790964
+    },
+    "ram_gb": {
+      "median": 16.0,
+      "mean": 19.361738362558345
+    },
+    "ssd_gb": {
+      "median": 256.0,
+      "mean": 239.1128497540053
+    },
+    "vram_gb": {
+      "median": 8192.0,
+      "mean": 7574.108960262394
+    },
+    "weight_kg": {
+      "median": 1.7,
+      "mean": 2.167939952062571
+    },
+    "cpu_base_ghz": {
+      "median": 2.4,
+      "mean": 3.5293847609436106
+    },
+    "cpu_turbo_ghz": {
+      "median": 4.7,
+      "mean": 4.670093351835499
+    },
+    "cpu_cores": {
+      "median": 10.0,
+      "mean": 10.173457802447333
+    },
+    "battery_wh": {
+      "median": 0.0,
+      "mean": 27.31685505235272
+    },
+    "cpu_mark": {
+      "median": 19475.0,
+      "mean": 21776.473319036206
+    },
+    "gpu_mark": {
+      "median": 1495.0,
+      "mean": 1535.2396871452
+    }
+  },
+  "encoding_mappings": {},
+  "low_card_dummies": {}
+}

@@ -1,0 +1,17 @@
+{
+  "high_cardinality": {},
+  "low_cardinality": {},
+  "numeric": [
+    "screen_size_inch",
+    "ram_gb",
+    "ssd_gb",
+    "vram_gb",
+    "weight_kg",
+    "cpu_base_ghz",
+    "cpu_turbo_ghz",
+    "cpu_cores",
+    "battery_wh",
+    "cpu_mark",
+    "gpu_mark"
+  ]
+}
