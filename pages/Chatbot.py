@@ -87,7 +87,9 @@ if prompt := st.chat_input("Your message"):
             ]
             
             # Initialize Model with Tools
-            model = genai.GenerativeModel('gemini-2.5-flash', tools=tools)
+            # We add a system instruction to encourage tool usage with defaults
+            system_instruction = "You are a helpful laptop expert agent. If the user asks for a recommendation or price but misses some details (like RAM or SSD), assume reasonable defaults (e.g., 8GB RAM, 256GB SSD) and proceed with the tool call. Do not ask for clarification unless absolutely necessary. Always explain your assumptions."
+            model = genai.GenerativeModel('gemini-2.5-flash', tools=tools, system_instruction=system_instruction)
             
             # Start Chat Session (Manual function calling for UI control)
             # We disable automatic function calling to intercept the tool call
@@ -98,10 +100,21 @@ if prompt := st.chat_input("Your message"):
                 with st.status("Processing...", expanded=True) as status:
                     response = chat.send_message(prompt)
                     
-                    # Loop to handle multiple function calls (e.g. for comparisons)
-                    while response.candidates[0].content.parts[0].function_call:
-                        part = response.candidates[0].content.parts[0]
-                        fc = part.function_call
+                    # Helper function to find function calls in any part of the response
+                    def get_function_call_from_response(resp):
+                        if not resp.candidates:
+                            return None
+                        for part in resp.candidates[0].content.parts:
+                            if part.function_call:
+                                return part.function_call
+                        return None
+
+                    # Loop to handle multiple function calls
+                    while True:
+                        fc = get_function_call_from_response(response)
+                        if not fc:
+                            break
+                            
                         fn_name = fc.name
                         fn_args = dict(fc.args)
                         
@@ -143,10 +156,23 @@ if prompt := st.chat_input("Your message"):
                             
                     status.update(label="Analysis Complete", state="complete", expanded=False)
                 
-                # Display final natural language response
-                st.markdown(response.text)
+                # Safely display final natural language response
+                final_text = ""
+                try:
+                    final_text = response.text
+                except Exception:
+                    # If response.text fails, manually extract text parts
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            final_text += part.text + "\n"
+                
+                if final_text:
+                    st.markdown(final_text)
+                else:
+                    st.warning("No text response generated.")
             
-            st.session_state.messages.append({"role": "assistant", "content": response.text})
+            if final_text:
+                st.session_state.messages.append({"role": "assistant", "content": final_text})
             
         except Exception as e:
             st.error(f"Error: {e}")

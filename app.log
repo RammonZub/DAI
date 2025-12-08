@@ -225,3 +225,25 @@ tornado.websocket.WebSocketClosedError
 2025-12-08 23:02:55,258 - INFO - Preprocessing input: {'ram_gb': 32.0, 'ssd_gb': 1024.0, 'cpu_mark': 5000, 'gpu_mark': 5000, 'screen_size_inch': 15.6, 'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0, 'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0, 'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250}
 2025-12-08 23:02:55,267 - INFO - Prediction successful: €713.92
 2025-12-08 23:02:55,271 - INFO - AGENT TOOL RESULT: The estimated market price for a computer with 32.0GB RAM, 1024.0GB SSD, and these specs is approximately €713.92.
+2025-12-08 23:22:43,082 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 23:22:43,296 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 23:22:43,331 - INFO - Loading model resources...
+2025-12-08 23:22:43,338 - INFO - Model resources loaded successfully
+2025-12-08 23:24:32,664 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 23:24:32,793 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 23:24:32,820 - INFO - Loading model resources...
+2025-12-08 23:24:32,826 - INFO - Model resources loaded successfully
+2025-12-08 23:29:11,980 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 23:29:12,213 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 23:29:12,242 - INFO - Loading model resources...
+2025-12-08 23:29:12,251 - INFO - Model resources loaded successfully
+2025-12-08 23:30:42,188 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=8.0, ssd=512.0, price=800.0
+2025-12-08 23:30:42,233 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-08 23:30:42,241 - INFO - Found 3 similar products
+2025-12-08 23:30:42,241 - INFO - AGENT TOOL RESULT: Found 3 recommendations.
+2025-12-08 23:30:44,962 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: ssd_gb=512.0
+2025-12-08 23:30:45,000 - INFO - AGENT TOOL RESULT: The average price for laptops with ssd_gb=512.0 is €1137.53 (based on 2319 models).
+2025-12-08 23:31:05,218 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=800.0
+2025-12-08 23:31:05,258 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-08 23:31:05,263 - INFO - Found 3 similar products
+2025-12-08 23:31:05,263 - INFO - AGENT TOOL RESULT: Found 3 recommendations.

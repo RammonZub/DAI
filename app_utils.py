@@ -213,12 +213,12 @@ def get_price_prediction_for_agent(ram_gb, ssd_gb, cpu_score=5000, gpu_score=500
         logger.error(f"Agent Prediction Error: {e}")
         return f"Error calculating price: {str(e)}"
 
-def recommend_laptops_for_agent(ram_gb, ssd_gb, price_euros=1000, k=3):
+def recommend_laptops_for_agent(ram_gb=8, ssd_gb=256, price_euros=1000, k=3):
     """
     Recommends actual laptops from the database based on specs.
     Args:
-        ram_gb (int): Desired RAM in GB.
-        ssd_gb (int): Desired Storage in GB.
+        ram_gb (int): Desired RAM in GB (default 8).
+        ssd_gb (int): Desired Storage in GB (default 256).
         price_euros (float): Approximate budget in Euros.
         k (int): Number of recommendations to return.
     Returns:
