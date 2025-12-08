@@ -193,3 +193,35 @@ tornado.websocket.WebSocketClosedError
 2025-12-08 22:14:08,036 - INFO - Preprocessing batch of 200 rows
 2025-12-08 22:14:08,076 - INFO - SHAP values calculated successfully. Generating plot...
 2025-12-08 22:14:08,556 - INFO - SHAP summary plot generated and displayed.
+2025-12-08 22:53:26,999 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:53:27,210 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:53:27,241 - INFO - Loading model resources...
+2025-12-08 22:53:27,248 - INFO - Model resources loaded successfully
+2025-12-08 22:55:22,807 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 22:55:22,920 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 22:55:22,955 - INFO - Loading model resources...
+2025-12-08 22:55:22,961 - INFO - Model resources loaded successfully
+2025-12-08 22:55:49,364 - INFO - AGENT TOOL CALLED: get_price_prediction_for_agent with args: ram=16.0, ssd=512.0, cpu=5000, gpu=5000, screen=15.6
+2025-12-08 22:55:49,367 - INFO - Preprocessing input: {'ram_gb': 16.0, 'ssd_gb': 512.0, 'cpu_mark': 5000, 'gpu_mark': 5000, 'screen_size_inch': 15.6, 'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0, 'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0, 'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250}
+2025-12-08 22:55:49,378 - INFO - Prediction successful: €964.72
+2025-12-08 22:55:49,384 - INFO - AGENT TOOL RESULT: The estimated market price for a computer with 16.0GB RAM, 512.0GB SSD, and these specs is approximately €964.72.
+2025-12-08 22:58:14,706 - INFO - AGENT TOOL CALLED: get_price_prediction_for_agent with args: ram=16.0, ssd=512.0, cpu=5000, gpu=5000, screen=15.6
+2025-12-08 22:58:14,708 - INFO - Preprocessing input: {'ram_gb': 16.0, 'ssd_gb': 512.0, 'cpu_mark': 5000, 'gpu_mark': 5000, 'screen_size_inch': 15.6, 'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0, 'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0, 'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250}
+2025-12-08 22:58:14,717 - INFO - Prediction successful: €964.72
+2025-12-08 22:58:14,723 - INFO - AGENT TOOL RESULT: The estimated market price for a computer with 16.0GB RAM, 512.0GB SSD, and these specs is approximately €964.72.
+2025-12-08 23:01:15,043 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 23:01:15,203 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 23:01:15,230 - INFO - Loading model resources...
+2025-12-08 23:01:15,238 - INFO - Model resources loaded successfully
+2025-12-08 23:02:35,816 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-08 23:02:36,110 - INFO - Data loaded successfully: 7927 rows
+2025-12-08 23:02:36,140 - INFO - Loading model resources...
+2025-12-08 23:02:36,151 - INFO - Model resources loaded successfully
+2025-12-08 23:02:53,923 - INFO - AGENT TOOL CALLED: get_price_prediction_for_agent with args: ram=8.0, ssd=256.0, cpu=5000, gpu=5000, screen=15.6
+2025-12-08 23:02:53,926 - INFO - Preprocessing input: {'ram_gb': 8.0, 'ssd_gb': 256.0, 'cpu_mark': 5000, 'gpu_mark': 5000, 'screen_size_inch': 15.6, 'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0, 'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0, 'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250}
+2025-12-08 23:02:53,942 - INFO - Prediction successful: €1309.24
+2025-12-08 23:02:53,948 - INFO - AGENT TOOL RESULT: The estimated market price for a computer with 8.0GB RAM, 256.0GB SSD, and these specs is approximately €1309.24.
+2025-12-08 23:02:55,256 - INFO - AGENT TOOL CALLED: get_price_prediction_for_agent with args: ram=32.0, ssd=1024.0, cpu=5000, gpu=5000, screen=15.6
+2025-12-08 23:02:55,258 - INFO - Preprocessing input: {'ram_gb': 32.0, 'ssd_gb': 1024.0, 'cpu_mark': 5000, 'gpu_mark': 5000, 'screen_size_inch': 15.6, 'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0, 'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0, 'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250}
+2025-12-08 23:02:55,267 - INFO - Prediction successful: €713.92
+2025-12-08 23:02:55,271 - INFO - AGENT TOOL RESULT: The estimated market price for a computer with 32.0GB RAM, 1024.0GB SSD, and these specs is approximately €713.92.

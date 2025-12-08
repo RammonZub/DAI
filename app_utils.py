@@ -160,8 +160,162 @@ def predict_price(model, input_df):
         
         return prediction, explainer, shap_values
     except Exception as e:
-        logger.error(f"Error during prediction: {e}")
-        raise e
+        logger.error(f"Error in prediction: {e}")
+        return None, None
+
+def get_price_prediction_for_agent(ram_gb, ssd_gb, cpu_score=5000, gpu_score=5000, screen_size=15.6):
+    """
+    Wrapper for the price predictor to be used by the AI Agent.
+    Args:
+        ram_gb (int): RAM in GB.
+        ssd_gb (int): Storage in GB.
+        cpu_score (int): Benchmark score of CPU (default 5000 for mid-range).
+        gpu_score (int): Benchmark score of GPU (default 5000 for mid-range).
+        screen_size (float): Screen size in inches.
+    Returns:
+        str: A natural language string with the predicted price.
+    """
+    try:
+        logger.info(f"AGENT TOOL CALLED: get_price_prediction_for_agent with args: ram={ram_gb}, ssd={ssd_gb}, cpu={cpu_score}, gpu={gpu_score}, screen={screen_size}")
+        
+        # Load resources
+        model, feature_info, input_options = load_model_resources()
+        
+        # Construct input dictionary with defaults for missing fields
+        # We use 'median' values from feature_info for things not specified
+        input_data = {
+            'ram_gb': ram_gb,
+            'ssd_gb': ssd_gb,
+            'cpu_mark': cpu_score,
+            'gpu_mark': gpu_score,
+            'screen_size_inch': screen_size,
+            # Defaults for other required fields to avoid errors
+            'cpu_cores': 4, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.0,
+            'vram_gb': 0, 'battery_wh': 50, 'weight_kg': 2.0,
+            'height': 20, 'width': 350, 'depth': 250, 'offers_num': 1, 'brightness_cd': 250
+        }
+        
+        # Preprocess
+        processed_df = preprocess_input(input_data, feature_info)
+        
+        # Predict
+        predicted_price, _, _ = predict_price(model, processed_df)
+        
+        if predicted_price:
+            result_msg = f"The estimated market price for a computer with {ram_gb}GB RAM, {ssd_gb}GB SSD, and these specs is approximately €{predicted_price:.2f}."
+            logger.info(f"AGENT TOOL RESULT: {result_msg}")
+            return result_msg
+        else:
+            logger.warning("AGENT TOOL: Prediction returned None")
+            return "I'm sorry, I couldn't calculate the price with the given information."
+            
+    except Exception as e:
+        logger.error(f"Agent Prediction Error: {e}")
+        return f"Error calculating price: {str(e)}"
+
+def recommend_laptops_for_agent(ram_gb, ssd_gb, price_euros=1000, k=3):
+    """
+    Recommends actual laptops from the database based on specs.
+    Args:
+        ram_gb (int): Desired RAM in GB.
+        ssd_gb (int): Desired Storage in GB.
+        price_euros (float): Approximate budget in Euros.
+        k (int): Number of recommendations to return.
+    Returns:
+        str: A list of recommended laptops with their details.
+    """
+    try:
+        logger.info(f"AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram={ram_gb}, ssd={ssd_gb}, price={price_euros}")
+        df = load_data()
+        
+        # Create a dummy input for similarity search
+        # We only care about the features used for similarity: ram, ssd, price, screen (default 15.6)
+        search_input = pd.DataFrame([{
+            'ram_gb': ram_gb, 
+            'ssd_gb': ssd_gb, 
+            'price_euros': price_euros,
+            'screen_size_inch': 15.6 
+        }])
+        
+        sim_features = ['ram_gb', 'ssd_gb', 'price_euros']
+        similar_products = find_similar_products(df, search_input, sim_features, k=k)
+        
+        if similar_products.empty:
+            return "No similar laptops found."
+            
+        # Format the output
+        results = []
+        for _, row in similar_products.iterrows():
+            results.append(f"- {row['brand']} {row['proccessor_name']}: {row['ram_gb']}GB RAM, {row['ssd_gb']}GB SSD, €{row['price_euros']:.2f}")
+            
+        result_msg = "\n".join(results)
+        logger.info(f"AGENT TOOL RESULT: Found {len(results)} recommendations.")
+        return f"Here are {len(results)} laptops similar to your request:\n{result_msg}"
+        
+    except Exception as e:
+        logger.error(f"Agent Recommendation Error: {e}")
+        return f"Error finding recommendations: {str(e)}"
+
+def get_average_price_for_spec(spec_name, spec_value):
+    """
+    Calculates the average price of laptops with a specific feature.
+    Args:
+        spec_name (str): The feature name (e.g., 'ram_gb', 'ssd_gb', 'brand').
+        spec_value (str/int): The value to filter by (e.g., 16, 'Dell').
+    Returns:
+        str: The average price.
+    """
+    try:
+        logger.info(f"AGENT TOOL CALLED: get_average_price_for_spec with args: {spec_name}={spec_value}")
+        df = load_data()
+        
+        # Handle numeric conversion if needed
+        if spec_name in ['ram_gb', 'ssd_gb', 'screen_size_inch']:
+            try:
+                spec_value = float(spec_value)
+            except:
+                pass # Keep as string if conversion fails
+        
+        # Filter
+        if spec_name not in df.columns:
+             return f"Error: Unknown feature '{spec_name}'."
+             
+        filtered_df = df[df[spec_name] == spec_value]
+        
+        if filtered_df.empty:
+            return f"No laptops found with {spec_name} = {spec_value}."
+            
+        avg_price = filtered_df['price_euros'].mean()
+        result_msg = f"The average price for laptops with {spec_name}={spec_value} is €{avg_price:.2f} (based on {len(filtered_df)} models)."
+        logger.info(f"AGENT TOOL RESULT: {result_msg}")
+        return result_msg
+        
+    except Exception as e:
+        logger.error(f"Agent Stats Error: {e}")
+        return f"Error calculating average: {str(e)}"
+
+def get_brand_count(brand_name):
+    """
+    Counts how many laptops of a specific brand are in the database.
+    Args:
+        brand_name (str): The brand name (e.g., 'Dell', 'HP', 'Apple').
+    Returns:
+        str: The count of laptops.
+    """
+    try:
+        logger.info(f"AGENT TOOL CALLED: get_brand_count with args: brand={brand_name}")
+        df = load_data()
+        
+        # Case insensitive search
+        count = df[df['brand'].str.lower() == brand_name.lower()].shape[0]
+        
+        result_msg = f"We have {count} {brand_name} laptops in our database."
+        logger.info(f"AGENT TOOL RESULT: {result_msg}")
+        return result_msg
+        
+    except Exception as e:
+        logger.error(f"Agent Count Error: {e}")
+        return f"Error counting brand: {str(e)}"
 
 def perform_clustering(df, features, n_clusters=4):
     """Performs K-Means clustering on the dataset."""

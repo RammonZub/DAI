@@ -1,11 +1,29 @@
 import streamlit as st
 import google.generativeai as genai
 import os
+import app_utils
 
 st.set_page_config(page_title="Chatbot", page_icon="💬")
 
-st.title("💬 Chatbot")
-st.markdown("🚀 A Streamlit chatbot powered by Gemini 2.5 Flash")
+st.title("Agentic Chatbot")
+st.markdown("A smart assistant that can predict computer prices using tools.")
+
+with st.expander("Suggested Complex Questions", expanded=False):
+    st.markdown("""
+    *   **Comparison**: "What is the price difference between a laptop with 16GB RAM and one with 32GB RAM?"
+    *   **Budget Check**: "I have €1000. Can I afford a laptop with 16GB RAM and 512GB SSD?"
+    *   **High-End vs Basic**: "How much more expensive is a high-end gaming laptop compared to a basic office one?"
+    """)
+
+with st.expander("Available Tools & Capabilities", expanded=False):
+    st.markdown("""
+    I have access to the following tools to help answer your questions:
+    
+    1.  **Price Predictor**: I can estimate the market price for *any* computer configuration (RAM, SSD, GPU, etc.).
+    2.  **Product Recommender**: I can find *actual* laptops in our database that match your needs and budget.
+    3.  **Market Analyst**: I can calculate average prices for specific specs (e.g., "Average price of 1TB SSD laptops").
+    4.  **Inventory Checker**: I can tell you how many laptops we have from a specific brand (e.g., "How many Dells?").
+    """)
 
 # Sidebar for API Key
 with st.sidebar:
@@ -15,7 +33,7 @@ with st.sidebar:
 
 # Initialize Chat History
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "How can I help you with your computer purchase today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I can help you estimate computer prices. Try asking: 'How much is a laptop with 16GB RAM and 512GB SSD?'"}]
 
 # Display Chat Messages
 for message in st.session_state.messages:
@@ -35,21 +53,97 @@ if prompt := st.chat_input("Your message"):
     else:
         try:
             genai.configure(api_key=api_key)
-            # Using gemini-2.5-flash as 2.5 might not be available via public API alias yet, or use 'gemini-pro'
-            # User asked for "Gemini 2.5 flash", assuming they mean the latest fast model.
-            # Let's try to list models or just use 'gemini-2.5-flash' which is the current flash model.
-            # If 2.5 is a specific request, I'll try to use a generic name or fallback.
-            # For now, 'gemini-2.5-flash' is safe.
-            model = genai.GenerativeModel('gemini-2.5-flash')
+            
+            # Define the tool
+            tools = [app_utils.get_price_prediction_for_agent]
+            
+            # Initialize Model with Tools
+            model = genai.GenerativeModel('gemini-2.5-flash', tools=tools)
+            
+            # Start Chat Session (Automatic function calling handling is supported in chat sessions)
+            chat = model.start_chat(enable_automatic_function_calling=True)
+            
+            # Replay history to set context (excluding the last user prompt which we send next)
+            # Note: For simple history replay with tools, we might need to be careful.
+            # Ideally, we just send the prompt with history, but `start_chat` manages history.
+            # Let's try to just send the prompt for now to keep it simple and robust, 
+            # or reconstruct history if needed. 
+            # For a robust agent, we often send the full history.
+            
+            # Simplified approach: Just send the current prompt. 
+            # We will construct the history for the chat session
+            history_for_gemini = []
+            for m in st.session_state.messages[:-1]:
+                role = "user" if m["role"] == "user" else "model"
+                history_for_gemini.append({"role": role, "parts": [m["content"]]})
+                
+            # Define the tools
+            tools = [
+                app_utils.get_price_prediction_for_agent,
+                app_utils.recommend_laptops_for_agent,
+                app_utils.get_average_price_for_spec,
+                app_utils.get_brand_count
+            ]
+            
+            # Initialize Model with Tools
+            model = genai.GenerativeModel('gemini-2.5-flash', tools=tools)
+            
+            # Start Chat Session (Manual function calling for UI control)
+            # We disable automatic function calling to intercept the tool call
+            chat = model.start_chat(history=history_for_gemini, enable_automatic_function_calling=False)
             
             with st.chat_message("assistant"):
-                with st.spinner("Thinking..."):
-                    chat = model.start_chat(history=[
-                        {"role": "user" if m["role"] == "user" else "model", "parts": m["content"]}
-                        for m in st.session_state.messages[:-1] # Exclude current prompt as it's sent in send_message
-                    ])
+                # Create a status container to show "thinking" process
+                with st.status("Processing...", expanded=True) as status:
                     response = chat.send_message(prompt)
-                    st.markdown(response.text)
+                    
+                    # Loop to handle multiple function calls (e.g. for comparisons)
+                    while response.candidates[0].content.parts[0].function_call:
+                        part = response.candidates[0].content.parts[0]
+                        fc = part.function_call
+                        fn_name = fc.name
+                        fn_args = dict(fc.args)
+                        
+                        status.write(f"**Reasoning:** I need to use a tool to answer your question.")
+                        status.write(f"**Tool Call:** `{fn_name}`")
+                        status.write(f"**Parameters:** `{fn_args}`")
+                        
+                        # Execute the tool
+                        api_response = "Error: Unknown tool"
+                        if fn_name == 'get_price_prediction_for_agent':
+                            status.update(label=f"Predicting price...", state="running")
+                            api_response = app_utils.get_price_prediction_for_agent(**fn_args)
+                        elif fn_name == 'recommend_laptops_for_agent':
+                            status.update(label=f"Finding recommendations...", state="running")
+                            api_response = app_utils.recommend_laptops_for_agent(**fn_args)
+                        elif fn_name == 'get_average_price_for_spec':
+                            status.update(label=f"Calculating average price...", state="running")
+                            api_response = app_utils.get_average_price_for_spec(**fn_args)
+                        elif fn_name == 'get_brand_count':
+                            status.update(label=f"Counting laptops...", state="running")
+                            api_response = app_utils.get_brand_count(**fn_args)
+                        else:
+                            status.write("Error: Unknown tool called.")
+                            break
+                            
+                        status.write(f"**Backend Output:** {api_response}")
+                        
+                        # Send tool output back to model
+                        response = chat.send_message(
+                            genai.protos.Content(
+                                parts=[genai.protos.Part(
+                                    function_response=genai.protos.FunctionResponse(
+                                        name=fn_name,
+                                        response={'result': api_response}
+                                    )
+                                )]
+                            )
+                        )
+                            
+                    status.update(label="Analysis Complete", state="complete", expanded=False)
+                
+                # Display final natural language response
+                st.markdown(response.text)
             
             st.session_state.messages.append({"role": "assistant", "content": response.text})
             
