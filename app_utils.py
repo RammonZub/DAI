@@ -225,6 +225,12 @@ def recommend_laptops_for_agent(ram_gb=8, ssd_gb=256, price_euros=1000, k=3):
         logger.info(f"AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram={ram_gb}, ssd={ssd_gb}, price={price_euros}")
         df = load_data()
         
+        # Helper validation function
+        try:
+            k = int(k)
+        except ValueError:
+             k = 3 # Default fallback
+
         # Create a dummy input for similarity search
         search_input = pd.DataFrame([{
             'ram_gb': ram_gb, 
@@ -343,6 +349,7 @@ def find_similar_products(df, user_input_df, features, k=5):
     """Finds k nearest neighbors to the user input."""
     logger.info(f"Finding {k} similar products based on {features}")
     try:
+        k = int(k) # Ensure k is int
         db_data = df[features].fillna(0) 
         
         nn = NearestNeighbors(n_neighbors=k)

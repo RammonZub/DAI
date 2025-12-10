@@ -79,57 +79,59 @@ if prompt := st.chat_input("Your message"):
                 with st.status("Processing...", expanded=True) as status:
                     response = chat.send_message(prompt)
                     
-                    def get_function_call_from_response(resp):
-                        if not resp.candidates:
-                            return None
-                        for part in resp.candidates[0].content.parts:
-                            if part.function_call:
-                                return part.function_call
-                        return None
-
-                    # Handle tool calls
+                    # Handle tool calls (Parallel Function Calling Support)
                     while True:
-                        fc = get_function_call_from_response(response)
-                        if not fc:
+                        # Extract all function calls from the response
+                        function_calls = []
+                        if response.candidates:
+                            for part in response.candidates[0].content.parts:
+                                if part.function_call:
+                                    function_calls.append(part.function_call)
+                        
+                        if not function_calls:
                             break
+                        
+                        # Execute all function calls
+                        function_responses = []
+                        for fc in function_calls:
+                            fn_name = fc.name
+                            fn_args = dict(fc.args)
                             
-                        fn_name = fc.name
-                        fn_args = dict(fc.args)
-                        
-                        status.write(f"**Reasoning:** I need to use a tool to answer your question.")
-                        status.write(f"**Tool Call:** `{fn_name}`")
-                        status.write(f"**Parameters:** `{fn_args}`")
-                        
-                        # Execute tool
-                        api_response = "Error: Unknown tool"
-                        if fn_name == 'get_price_prediction_for_agent':
-                            status.update(label=f"Predicting price...", state="running")
-                            api_response = app_utils.get_price_prediction_for_agent(**fn_args)
-                        elif fn_name == 'recommend_laptops_for_agent':
-                            status.update(label=f"Finding recommendations...", state="running")
-                            api_response = app_utils.recommend_laptops_for_agent(**fn_args)
-                        elif fn_name == 'get_average_price_for_spec':
-                            status.update(label=f"Calculating average price...", state="running")
-                            api_response = app_utils.get_average_price_for_spec(**fn_args)
-                        elif fn_name == 'get_brand_count':
-                            status.update(label=f"Counting laptops...", state="running")
-                            api_response = app_utils.get_brand_count(**fn_args)
-                        else:
-                            status.write("Error: Unknown tool called.")
-                            break
+                            status.write(f"**Reasoning:** I need to use a tool to answer your question.")
+                            status.write(f"**Tool Call:** `{fn_name}`")
+                            status.write(f"**Parameters:** `{fn_args}`")
                             
-                        status.write(f"**Backend Output:** {api_response}")
+                            # Execute tool
+                            api_response = "Error: Unknown tool"
+                            if fn_name == 'get_price_prediction_for_agent':
+                                status.update(label=f"Predicting price...", state="running")
+                                api_response = app_utils.get_price_prediction_for_agent(**fn_args)
+                            elif fn_name == 'recommend_laptops_for_agent':
+                                status.update(label=f"Finding recommendations...", state="running")
+                                api_response = app_utils.recommend_laptops_for_agent(**fn_args)
+                            elif fn_name == 'get_average_price_for_spec':
+                                status.update(label=f"Calculating average price...", state="running")
+                                api_response = app_utils.get_average_price_for_spec(**fn_args)
+                            elif fn_name == 'get_brand_count':
+                                status.update(label=f"Counting laptops...", state="running")
+                                api_response = app_utils.get_brand_count(**fn_args)
+                            else:
+                                status.write(f"Error: Unknown tool {fn_name} called.")
+                                api_response = f"Error: Unknown tool {fn_name}"
+
+                            status.write(f"**Backend Output:** {api_response}")
+                            
+                            # Prepare response part
+                            function_responses.append(genai.protos.Part(
+                                function_response=genai.protos.FunctionResponse(
+                                    name=fn_name,
+                                    response={'result': api_response}
+                                )
+                            ))
                         
-                        # Send output back to model
+                        # Send all outputs back to model
                         response = chat.send_message(
-                            genai.protos.Content(
-                                parts=[genai.protos.Part(
-                                    function_response=genai.protos.FunctionResponse(
-                                        name=fn_name,
-                                        response={'result': api_response}
-                                    )
-                                )]
-                            )
+                            genai.protos.Content(parts=function_responses)
                         )
                             
                     status.update(label="Analysis Complete", state="complete", expanded=False)

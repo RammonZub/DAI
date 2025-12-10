@@ -1,0 +1,72 @@
+2025-12-10 10:23:14,229 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Dell
+2025-12-10 10:23:14,231 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-10 10:23:14,323 - INFO - Data loaded successfully: 7927 rows
+2025-12-10 10:23:14,341 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Dell is €1357.65 (based on 391 models).
+2025-12-10 10:23:15,664 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=HP
+2025-12-10 10:23:15,710 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=HP is €1392.62 (based on 1390 models).
+2025-12-10 10:23:16,895 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=1200.0
+2025-12-10 10:23:16,926 - INFO - Finding 3.0 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:23:16,927 - ERROR - Error finding similar products: The 'n_neighbors' parameter of NearestNeighbors must be an int in the range [1, inf) or None. Got 3.0 instead.
+2025-12-10 10:23:16,927 - ERROR - Agent Recommendation Error: The 'n_neighbors' parameter of NearestNeighbors must be an int in the range [1, inf) or None. Got 3.0 instead.
+2025-12-10 10:23:19,540 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=1200.0
+2025-12-10 10:23:19,574 - INFO - Finding 3.0 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:23:19,575 - ERROR - Error finding similar products: The 'n_neighbors' parameter of NearestNeighbors must be an int in the range [1, inf) or None. Got 3.0 instead.
+2025-12-10 10:23:19,575 - ERROR - Agent Recommendation Error: The 'n_neighbors' parameter of NearestNeighbors must be an int in the range [1, inf) or None. Got 3.0 instead.
+2025-12-10 10:25:35,165 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16, ssd=512, price=1200
+2025-12-10 10:25:35,475 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-10 10:25:35,622 - INFO - Data loaded successfully: 7927 rows
+2025-12-10 10:25:35,623 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:25:35,632 - INFO - Found 3 similar products
+2025-12-10 10:25:35,632 - INFO - AGENT TOOL RESULT: Found 3 recommendations.
+2025-12-10 10:26:54,678 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-10 10:26:54,795 - INFO - Data loaded successfully: 7927 rows
+2025-12-10 10:26:54,816 - INFO - Loading model resources...
+2025-12-10 10:26:54,825 - INFO - Model resources loaded successfully
+2025-12-10 10:27:18,147 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=1200.0
+2025-12-10 10:27:18,209 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:27:18,221 - INFO - Found 3 similar products
+2025-12-10 10:27:18,222 - INFO - AGENT TOOL RESULT: Found 3 recommendations.
+2025-12-10 10:27:39,309 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Dell
+2025-12-10 10:27:39,366 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Dell is €1357.65 (based on 391 models).
+2025-12-10 10:27:39,959 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=HP
+2025-12-10 10:27:39,998 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=HP is €1392.62 (based on 1390 models).
+2025-12-10 10:27:46,145 - INFO - AGENT TOOL CALLED: get_brand_count with args: brand=Apple
+2025-12-10 10:27:46,204 - INFO - AGENT TOOL RESULT: We have 238 Apple laptops in our database.
+2025-12-10 10:27:47,143 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Apple
+2025-12-10 10:27:47,180 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Apple is €1936.24 (based on 238 models).
+2025-12-10 10:53:01,810 - INFO - Loading data from db/db_computers_clean.csv
+2025-12-10 10:53:01,914 - INFO - Data loaded successfully: 7927 rows
+2025-12-10 10:53:01,944 - INFO - Loading model resources...
+2025-12-10 10:53:01,949 - INFO - Model resources loaded successfully
+2025-12-10 10:54:40,315 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=1200.0
+2025-12-10 10:54:40,389 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:54:40,396 - INFO - Found 3 similar products
+2025-12-10 10:54:40,396 - INFO - AGENT TOOL RESULT: Found 3 recommendations.
+2025-12-10 10:54:40,402 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Dell
+2025-12-10 10:54:40,425 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Dell is €1357.65 (based on 391 models).
+2025-12-10 10:54:40,431 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=HP
+2025-12-10 10:54:40,454 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=HP is €1392.62 (based on 1390 models).
+2025-12-10 10:55:01,340 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=16.0, ssd=512.0, price=1200.0
+2025-12-10 10:55:01,399 - INFO - Finding 3 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:55:01,407 - INFO - Found 3 similar products
+2025-12-10 10:55:01,408 - INFO - AGENT TOOL RESULT: Found 3 recommendations.
+2025-12-10 10:55:01,413 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Dell
+2025-12-10 10:55:01,443 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Dell is €1357.65 (based on 391 models).
+2025-12-10 10:55:01,451 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=HP
+2025-12-10 10:55:01,476 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=HP is €1392.62 (based on 1390 models).
+2025-12-10 10:55:01,482 - INFO - AGENT TOOL CALLED: get_brand_count with args: brand=Apple
+2025-12-10 10:55:01,507 - INFO - AGENT TOOL RESULT: We have 238 Apple laptops in our database.
+2025-12-10 10:55:01,508 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: brand=Apple
+2025-12-10 10:55:01,527 - INFO - AGENT TOOL RESULT: The average price for laptops with brand=Apple is €1936.24 (based on 238 models).
+2025-12-10 10:55:01,532 - INFO - AGENT TOOL CALLED: recommend_laptops_for_agent with args: ram=8.0, ssd=512.0, price=800.0
+2025-12-10 10:55:01,550 - INFO - Finding 1 similar products based on ['ram_gb', 'ssd_gb', 'price_euros']
+2025-12-10 10:55:01,553 - INFO - Found 1 similar products
+2025-12-10 10:55:01,553 - INFO - AGENT TOOL RESULT: Found 1 recommendations.
+2025-12-10 10:55:01,558 - INFO - AGENT TOOL CALLED: get_average_price_for_spec with args: ssd_gb=512.0
+2025-12-10 10:55:01,576 - INFO - AGENT TOOL RESULT: The average price for laptops with ssd_gb=512.0 is €1137.53 (based on 2319 models).
+2025-12-10 10:56:50,106 - INFO - Preprocessing input: {'cpu_cores': 8, 'cpu_base_ghz': 2.5, 'cpu_turbo_ghz': 4.5, 'ram_gb': 16, 'ssd_gb': 512, 'vram_gb': 4.0, 'screen_size_inch': 15.6, 'battery_wh': 50.0, 'height': 20.0, 'width': 30.0, 'depth': 20.0, 'weight_kg': 2.0, 'offers_num': 1, 'brightness_cd': 300}
+2025-12-10 10:56:50,112 - INFO - Prediction successful: €1038.55
+2025-12-10 10:57:03,426 - INFO - Starting SHAP summary generation...
+2025-12-10 10:57:03,431 - INFO - Preprocessing batch of 200 rows
+2025-12-10 10:57:03,469 - INFO - SHAP values calculated successfully. Generating plot...
+2025-12-10 10:57:03,805 - INFO - SHAP summary plot generated and displayed.
