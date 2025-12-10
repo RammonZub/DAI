@@ -126,7 +126,14 @@ def main():
     
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    model = GradientBoostingRegressor(n_estimators=100, max_depth=5, learning_rate=0.1, random_state=42)
+    model = GradientBoostingRegressor(
+        n_estimators=200, 
+        max_depth=5, 
+        learning_rate=0.15, 
+        min_samples_split=2,
+        min_samples_leaf=2,
+        random_state=42
+    )
     model.fit(X_train, y_train)
     
     print(f"Model R2: {model.score(X_test, y_test):.4f}")
