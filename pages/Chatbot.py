@@ -122,16 +122,20 @@ if prompt := st.chat_input("Your message"):
                             status.write(f"**Backend Output:** {api_response}")
                             
                             # Prepare response part
+                            # Ensure response is a valid dictionary for protobuf Struct
+                            safe_response = {'result': str(api_response)}
+                            
                             function_responses.append(genai.protos.Part(
                                 function_response=genai.protos.FunctionResponse(
                                     name=fn_name,
-                                    response={'result': api_response}
+                                    response=safe_response
                                 )
                             ))
                         
                         # Send all outputs back to model
+                        # Note: Passing a list of Part objects directly is often safer with the SDK
                         response = chat.send_message(
-                            genai.protos.Content(parts=function_responses)
+                            function_responses
                         )
                             
                     status.update(label="Analysis Complete", state="complete", expanded=False)
